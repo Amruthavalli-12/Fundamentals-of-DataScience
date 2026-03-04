@@ -1,0 +1,57 @@
+import pandas as pd
+from bs4 import BeautifulSoup
+
+# Sample HTML page
+html_data = """
+<html>
+<body>
+<table border="1">
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Age</th>
+</tr>
+
+<tr>
+<td>24B11AI239</td>
+<td>Supriya</td>
+<td>20</td>
+</tr>
+
+<tr>
+<td>24B11AI276</td>
+<td>Padmavathi</td>
+<td>18</td>
+</tr>
+
+<tr>
+<td>24B11AI281</td>
+<td>Shanmukha</td>
+<td>20</td>
+</tr>
+
+</table>
+</body>
+</html>
+"""
+
+# Parse HTML
+soup = BeautifulSoup(html_data, "html.parser")
+
+# Find table
+table = soup.find("table")
+
+# Extract rows
+rows = table.find_all("tr")
+
+data = []
+
+for row in rows[1:]:
+    cols = row.find_all("td")
+    data.append([col.text for col in cols])
+
+# Convert to DataFrame
+df = pd.DataFrame(data, columns=["ID","Name","Age"])
+
+print("Data Extracted from HTML Table")
+print(df)
