@@ -1,0 +1,24 @@
+import pandas as pd
+
+#create the dataset
+data = {'ID': [101, 102, 103, 104, 105],
+        'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eve'],
+        'Age' : [25,None,29,33,None],
+        'Salary' :[55000,40000,None,62000,None]}
+df = pd.DataFrame(data)
+print(data)
+
+#remove rows with missing values
+df_cleaned=df.dropna()
+print(df_cleaned)
+for column in df.columns:
+  if df[column].dtype == 'float64' or df[column].dtype == 'int64':
+    df[column].fillna(df[column].mean(),inplace=True)
+print(df)
+#create  acolumn based flaag
+for column in df.columns:
+  if df[column].isnull().any():
+    df[f'{column}_Flag'] = df[column].isna().apply(lambda x: 'Missing' if x else'Not Missing')
+#create a row based flag
+df['Missing_Flag'] = df.isnull().any(axis=1).apply(lambda x: 'Missing' if x else 'Not Missing')
+print(df)
