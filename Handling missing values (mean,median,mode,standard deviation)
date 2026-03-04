@@ -1,0 +1,30 @@
+import pandas as pd
+
+# Sample dataset
+data = {
+    'ID': ['24B11AI239','24B11AI239','24B11AI276','24B11AI281','24B11AI327','24B11AI408','24B11AI266','24B11AI291','24B11AI250'],
+    'Name': ['Supriya','Supriya','Padmavathi','Shanmukha','Varshitha','Lasya','Depthi','Sindhu','Anu'],
+    'Age': [20,20,18,20,21,19,18,22,21],
+    'Percentage':[9.9,9.9,9.5,9.4,9.2,9.3,9.1,9.6,8.9]
+}
+
+# Original dataset
+df = pd.DataFrame(data)
+print("Original Dataset")
+print(df,"\n")
+
+# Mean
+print("Mean of Age and Percentage")
+print(df[['Age','Percentage']].mean(),"\n")
+
+# Median
+print("Median of Age and Percentage")
+print(df[['Age','Percentage']].median(),"\n")
+
+# Mode
+print("Mode of Age and Percentage")
+print(df[['Age','Percentage']].mode(),"\n")
+
+# Standard Deviation
+print("Standard Deviation of Age and Percentage")
+print(df[['Age','Percentage']].std(),"\n")
