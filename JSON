@@ -1,0 +1,24 @@
+[
+    {
+        "id":1,
+        "name":"Ravi",
+        "address":{
+        "city":"Hyderabad","state":"Telengana"
+    },
+    "marks":{
+        "math":85,
+        "science":90
+    }
+    },
+    {
+        "id":2,
+        "name":"priya",
+        "address":{
+        "city":"chennai","state":"tamilnadu"
+    },
+    "marks":{
+        "math":88,
+        "science":92
+    }
+    }
+]
