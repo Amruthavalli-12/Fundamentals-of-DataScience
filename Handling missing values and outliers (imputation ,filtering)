@@ -1,0 +1,39 @@
+import pandas as pd
+
+# Sample dataset
+data = {
+    'ID': ['24B11AI239','24B11AI239','24B11AI276','24B11AI281','24B11AI327','24B11AI408','24B11AI266','24B11AI291','24B11AI250'],
+    'Name': ['Supriya','Supriya','Padmavathi','Shanmukha','Varshitha','Lasya','Depthi','Sindhu','Anu'],
+    'Age': [20,20,18,20,21,19,18,None,21],
+    'Percentage':[9.9,9.9,None,9.4,9.2,9.3,None,9.6,8.9],
+    'City':['NY','NY','NY','SF','LA','LA','NV',None,None]
+}
+
+# Original dataset
+df = pd.DataFrame(data)
+print("Original Dataset")
+print(df,"\n")
+
+# Handling Missing Values using Mean Imputation
+df['Age'].fillna(df['Age'].mean(), inplace=True)
+df['Percentage'].fillna(df['Percentage'].mean(), inplace=True)
+
+# Handling Missing Values using Mode for City
+df['City'].fillna(df['City'].mode()[0], inplace=True)
+
+print("Dataset After Handling Missing Values")
+print(df,"\n")
+
+# Detecting Outliers using IQR method
+Q1 = df['Percentage'].quantile(0.25)
+Q3 = df['Percentage'].quantile(0.75)
+IQR = Q3 - Q1
+
+lower_bound = Q1 - 1.5 * IQR
+upper_bound = Q3 + 1.5 * IQR
+
+# Filtering Outliers
+df_filtered = df[(df['Percentage'] >= lower_bound) & (df['Percentage'] <= upper_bound)]
+
+print("Dataset After Removing Outliers")
+print(df_filtered)
