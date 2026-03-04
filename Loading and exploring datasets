@@ -1,0 +1,12 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import warnings as wr
+wr.filterwarnings('ignore')
+df = pd.read_excel("/content/WineQT.xlsx")
+print(df.head())
+df.shape
+df.describe().T
+df.isnull().sum()
+df.nunique()
